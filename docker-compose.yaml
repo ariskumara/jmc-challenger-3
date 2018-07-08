@@ -1,0 +1,7 @@
+version: '3'
+services:
+  jmc-web-app:
+    image: tenzai/jmc-node-web:v1
+    container_name: jmc-web-app
+    ports:
+     - "3000:3000"

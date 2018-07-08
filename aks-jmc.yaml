@@ -1,0 +1,33 @@
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: jmc-node-web
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: jmc-node-web
+    spec:
+      containers:
+      - name: jmc-node-web
+        image: jmcacr.azurecr.io/jmc-node-web:v1
+        ports:
+        - containerPort: 3000
+        resources:
+          requests:
+            cpu: 250m
+          limits:
+            cpu: 500m
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: jmc-node-web
+spec:
+  type: LoadBalancer
+  ports:
+  - port: 3000
+  selector:
+    app: jmc-node-web
